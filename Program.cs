@@ -29,11 +29,12 @@ namespace Assignment1
 
             for (int i = 0; i < n; i++)
             {
-                if (target != marks[i])
-                    continue;
-                if (first == -1)
-                    first = i;
-                last = i;
+                if (target == marks[i])
+                {
+                    if (first == -1)
+                        first = i;
+                    last = i;
+                }
             }
 
             Console.WriteLine(first);
