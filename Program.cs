@@ -40,4 +40,6 @@ namespace Assignment1
             Console.WriteLine(first);
             Console.WriteLine(last);
         }
+    }
+}
     
