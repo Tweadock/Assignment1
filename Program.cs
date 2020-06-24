@@ -19,14 +19,17 @@ namespace Assignment1
 		}
 		static int minSum(int[] arr, int n)
 		{   //setting the sum of the array to start at the first number
-			int sum = 0;
+			int sum = arr[0];
 			//creating a loop to run as long as the length of the array, starting at position 1 because position 0 is already accounted for
 			for (int i = 1; i < n; i++)
 			{   //if i is the same as the number before it, run the while loop to check for while the two numbers are equal, make the number i + 1, then add position i to the sum
 				if (arr[i] == arr[i - 1])
 				{
 					int k = i;
-					while (k < n && arr[k] <= arr[k - 1])
+					// propagate the change to the end, in case the new number matches the next
+					// needs to be a loop because the next updated number could go to multiple positions
+					// on the array
+					while ((k < n) && (arr[k] <= arr[k - 1]))
 					{
 						arr[k] = arr[k] + 1;
 						k++;
