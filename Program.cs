@@ -37,7 +37,33 @@ namespace Assignment1
                     lettersDictionary.Add(myStr[i], 1);
                 }
             }
-
+            // At this point, dictionary has counts of letters
+            // find the max count on the dictionary
+            int maxCount = 0;
+            char[] keysArray = lettersDictionary.Keys.ToArray<char>();
+            for (int index = 0; index < keysArray.Length; index++)
+            {
+                int Value;
+                lettersDictionary.TryGetValue(keysArray[index], out Value);
+                if (Value > maxCount)
+                {
+                    maxCount = Value;
+                }
+            }
+            // at this point, we know what is the max number of occurrences
+            // append to the output string
+            string returnValue = "";
+            for (int count = maxCount; count > 0; count--)
+            {
+                for (int index = 0; index < keysArray.Length; index++)
+                {
+                    int value;
+                    lettersDictionary.TryGetValue(keysArray[index], out value);
+                    if (value == count)
+                        returnValue += keysArray[index];
+                }
+            }
+            Console.WriteLine(returnValue);
         }
 
     }
