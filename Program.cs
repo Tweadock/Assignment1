@@ -60,7 +60,11 @@ namespace Assignment1
                     int value;
                     lettersDictionary.TryGetValue(keysArray[index], out value);
                     if (value == count)
-                        returnValue += keysArray[index];
+                    {
+                        for (int occurrences = 0; occurrences < count; occurrences ++)
+                            returnValue += keysArray[index];
+                    }
+                        
                 }
             }
             Console.WriteLine(returnValue);
