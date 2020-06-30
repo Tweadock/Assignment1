@@ -15,6 +15,15 @@ namespace Assignment1
         {
             int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 5, 2, 5 };
             int[] intersect1 = Intersect2(nums1, nums2);
+            Console.Write("Intersection : [");
+            for(int i = 0; i < intersect1.Length; i++)
+            {
+                if (i > 0)
+                    Console.Write(", ");
+                Console.Write(intersect1[i]);
+            }
+            Console.WriteLine("]");
+            Console.ReadLine();
         }
 
         private static int[] Intersect2(int[] nums1, int[] nums2)
