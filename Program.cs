@@ -21,21 +21,26 @@ namespace Assignment1
 		{   //setting the sum of the array to start at the first number
 			int sum = arr[0];
 			//creating a loop to run as long as the length of the array, starting at position 1 because position 0 is already accounted for
-			for (int i = 1; i < n; i++)
+			int i = 1;
+			while(i < n)
 			{   //if i is the same as the number before it, run the while loop to check for while the two numbers are equal, make the number i + 1, then add position i to the sum
 				if (arr[i] == arr[i - 1])
 				{
-					int k = i;
-					// propagate the change to the end, in case the new number matches the next
+					// propagate the change until the updated number does not match next,
+					// or until the end of the string, in case the new number matches the next
 					// needs to be a loop because the next updated number could go to multiple positions
 					// on the array
-					while ((k < n) && (arr[k] <= arr[k - 1]))
+					while ((i < n) && (arr[i] <= arr[i - 1]))
 					{
-						arr[k] = arr[k] + 1;
-						k++;
+						arr[i] = arr[i] + 1;
+						sum = sum + arr[i];
+						i++;
 					}
+				} else
+                {
+					sum = sum + arr[i];
+					i++;
 				}
-				sum = sum + arr[i];
 			}
 			return sum;
 		}
