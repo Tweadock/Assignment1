@@ -18,6 +18,7 @@ namespace Assignment1
 
             string myStr = "Aaaababc";
             int len = myStr.Length;
+            int maxCount = 0;
 
             Dictionary<char, int> lettersDictionary = new Dictionary<char, int>();
 
@@ -31,25 +32,16 @@ namespace Assignment1
                     lettersDictionary.Remove(myStr[i]);
                     newCount++;
                     lettersDictionary.TryAdd(myStr[i], newCount);
+                    // keep track of the overall max number of occurrences
+                    if(newCount>maxCount)
+                        maxCount = newCount;
                 } 
                 else // never saw this letter; add it to dictionary with count = 1
                 {
                     lettersDictionary.Add(myStr[i], 1);
                 }
             }
-            // At this point, dictionary has counts of letters
-            // find the max count on the dictionary
-            int maxCount = 0;
             char[] keysArray = lettersDictionary.Keys.ToArray<char>();
-            for (int index = 0; index < keysArray.Length; index++)
-            {
-                int Value;
-                lettersDictionary.TryGetValue(keysArray[index], out Value);
-                if (Value > maxCount)
-                {
-                    maxCount = Value;
-                }
-            }
             // at this point, we know what is the max number of occurrences
             // append to the output string
             string returnValue = "";
@@ -57,14 +49,12 @@ namespace Assignment1
             {
                 for (int index = 0; index < keysArray.Length; index++)
                 {
-                    int value;
-                    lettersDictionary.TryGetValue(keysArray[index], out value);
+                    lettersDictionary.TryGetValue(keysArray[index], out int value);
                     if (value == count)
                     {
                         for (int occurrences = 0; occurrences < count; occurrences ++)
                             returnValue += keysArray[index];
-                    }
-                        
+                    }                
                 }
             }
             Console.WriteLine(returnValue);
