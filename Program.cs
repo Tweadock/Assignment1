@@ -13,14 +13,14 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
-            int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 5, 5 };
+            int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 5, 2, 5 };
             int[] intersect1 = Intersect2(nums1, nums2);
         }
 
         private static int[] Intersect2(int[] nums1, int[] nums2)
         {
-            Dictionary<int, int> nums1Dictionary = insertIntoDictionary(nums1);
-            Dictionary<int, int> intersect = intersection(nums1Dictionary, nums2);
+            Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
+            Dictionary<int, int> intersect = Intersection(nums1Dictionary, nums2);
             int[] keys = intersect.Keys.ToArray<int>();
             int[] retValue = new int[Math.Min(nums1.Length, nums2.Length)];
             int arraySize = 0;
@@ -35,7 +35,7 @@ namespace Assignment1
             return retValue;
         }
 
-        public static Dictionary<int, int> insertIntoDictionary(int[] nums)
+        public static Dictionary<int, int> InsertIntoDictionary(int[] nums)
         {
             Dictionary<int, int> retValue = new Dictionary<int, int>();
             for (int count = 0; count < nums.Length; count++)
@@ -56,12 +56,12 @@ namespace Assignment1
             return retValue;
         }
 
-        public static Dictionary<int, int> intersection(Dictionary<int, int> inputDictionary, int[] nums)
+        public static Dictionary<int, int> Intersection(Dictionary<int, int> inputDictionary, int[] nums)
         {
             Dictionary<int, int> retValue = new Dictionary<int, int>();
-            for(int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                if(inputDictionary.ContainsKey(nums[i])) // num on second set is on first set
+                if (inputDictionary.ContainsKey(nums[i])) // num on second set is on first set
                 {
                     // how many occurrences on first set?
                     inputDictionary.TryGetValue(nums[i], out int count1);
@@ -85,13 +85,6 @@ namespace Assignment1
             }
             return retValue;
         }
-
-                {   //problem #3 
-                    //creating the array, length argument, and function.
-                    int[] arr = { 2, 2, 3, 5, 6 };
-                    int n = arr.Length;
-                    Console.WriteLine(minSum(arr, n));
-                }
-            }
-        }
+    }
+}
     
