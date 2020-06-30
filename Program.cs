@@ -1,94 +1,96 @@
 ﻿using Microsoft.VisualBasic.CompilerServices;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Assignment1
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 5, 5 };
+            int[] intersect1 = Intersect2(nums1, nums2);
+        }
 
-        ////Problem 1
-        ////set up the initial array and the target number
-        //{
-        //    int[] arr = { 1, 2, 3, 4, 5, 6, 6, 6, 7, 9 };
-        //    int x = 6;
-        //    GetArray(arr, x);
+        private static int[] Intersect2(int[] nums1, int[] nums2)
+        {
+            Dictionary<int, int> nums1Dictionary = insertIntoDictionary(nums1);
+            Dictionary<int, int> intersect = intersection(nums1Dictionary, nums2);
+            int[] keys = intersect.Keys.ToArray<int>();
+            int[] retValue = new int[Math.Min(nums1.Length, nums2.Length)];
+            int arraySize = 0;
+            for (int i = 0; i < keys.Length; i++)
+            {
+                intersect.TryGetValue(keys[i], out int value);
+                for (int j = 0; j < value; j++)
+                {
+                    retValue[arraySize++] = keys[i];
+                }
+            }
+            return retValue;
+        }
 
+        public static Dictionary<int, int> insertIntoDictionary(int[] nums)
+        {
+            Dictionary<int, int> retValue = new Dictionary<int, int>();
+            for (int count = 0; count < nums.Length; count++)
+            {
+                if (retValue.ContainsKey(nums[count]))
+                {
+                    retValue.TryGetValue(nums[count], out int newCount);
+                    retValue.Remove(nums[count]);
+                    newCount++;
+                    retValue.TryAdd(nums[count], newCount);
+                    // keep track of the overall max number of occurrences
+                }
+                else // never saw this number; add it to dictionary with count = 1
+                {
+                    retValue.Add(nums[count], 1);
+                }
+            }
+            return retValue;
+        }
 
-        //}
-
-        //static void GetArray(int[] marks, int target)
-
-        ////set up the function, plus the first and last numbers.
-        ////with the for loop, say that if the target number is not equal to i, move on, if not and first is == -1, set it equal to the target, then continue to make last equal to i until the end
-        //{
-        //    int n = marks.Length;
-        //    int first = -1, last = -1;
-
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        if (target != marks[i])
-        //            continue;
-        //        if (first == -1)
-        //            first = i;
-        //        last = i;
-        //    }
-
-        //    Console.WriteLine(first);
-        //    Console.WriteLine(last);
-
-
-
-
-
-
-        //    //question 2
-        //    {
-        //        string rev = "";
-        //        string myStr = "Rocky was here";
-        //        Console.WriteLine("my input is: " + myStr);
-        //        //set length equal to 1 minus the string length to avoid errors
-        //        int len;
-        //        len = myStr.Length - 1;
-        //        //take the string starting with the highest number and place them until the end, moving down one number at a time.
-        //        while (len >= 0)
-        //        {
-        //            rev = rev + myStr[len];
-        //            len--;
-        //        }
-
-        //        Console.WriteLine("reversed string is: " + rev);
-        //        Console.ReadLine();
-
+        public static Dictionary<int, int> intersection(Dictionary<int, int> inputDictionary, int[] nums)
+        {
+            Dictionary<int, int> retValue = new Dictionary<int, int>();
+            for(int i = 0; i < nums.Length; i++)
+            {
+                if(inputDictionary.ContainsKey(nums[i])) // num on second set is on first set
+                {
+                    // how many occurrences on first set?
+                    inputDictionary.TryGetValue(nums[i], out int count1);
+                    // check if we already have in the intersection
+                    if (retValue.ContainsKey(nums[i]))
+                    {
+                        // check how many we already have on the intersection
+                        retValue.TryGetValue(nums[i], out int count2);
+                        if (count1 > count2) // we have more on the first set than we already counted in the intersection
+                        {
+                            count2++; // increament the number of occurrences on the intersection
+                            retValue.Remove(nums[i]);
+                            retValue.TryAdd(nums[i], count2);
+                        } // if we alread found all matching items in first list, do not add more.
+                    }
+                    else // found a match, but was not on the intersection list yet
+                    {
+                        retValue.TryAdd(nums[i], 1);
+                    }
+                }
+            }
+            return retValue;
+        }
 
                 {   //problem #3 
                     //creating the array, length argument, and function.
                     int[] arr = { 2, 2, 3, 5, 6 };
                     int n = arr.Length;
                     Console.WriteLine(minSum(arr, n));
-                }
-                static int minSum(int[] arr, int n)
-                {   //setting the sum of the array to start at the first number
-                    int sum = arr[0];
-                    //creating a loop to run as long as the length of the array, starting at position 1 because position 0 is already accounted for
-                    for (int i = 1; i < n; i++)
-                    {   //if i is the same as the number before it, run the while loop to check for while the two numbers are equal, make the number i + 1, then add position i to the sum
-                        if (arr[i] == arr[i - 1])
-                        {
-                            int k = i;
-                            while (k < n && arr[k] <= arr[k - 1])
-                            {
-                                arr[k] = arr[k] + 1;
-                                k++;
-                            }
-                        }
-                        sum = sum + arr[i];
-                    }
-                    return sum;
                 }
             }
         }
