@@ -13,20 +13,28 @@ namespace Assignment1
 
         //question 2
         {
-            string rev = "";
+
             string myStr = "Rocky was here";
             Console.WriteLine("my input is: " + myStr);
-            //set length equal to 1 minus the string length to avoid errors
-            int len = myStr.Length - 1;
-            //take the string starting with the highest number and place them until the end, moving down one number at a time.
-            while (len >= 0)
-            {
-                rev = rev + myStr[len];
-                len--;
-            }
+            string rev = StringReverse(myStr);
 
             Console.WriteLine("reversed string is: " + rev);
             Console.ReadLine();
+        }
+        
+        private static string StringReverse(string s)
+        {
+            string returnValue = "";
+            //set length equal to 1 minus the string length to avoid errors
+            int len = s.Length - 1;
+            //take the string starting with the highest number and place them until the end, moving down one number at a time.
+            while (len >= 0)
+            {
+                returnValue = returnValue + s[len];
+                len--;
+            }
+
+            return returnValue;
         }
     }
 }
