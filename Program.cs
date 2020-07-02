@@ -14,9 +14,16 @@ namespace Assignment1
         static void Main(string[] args)
         {
             int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 5, 2, 5 };
-            int[] intersect1 = Intersect2(nums1, nums2);
+            int[] intersect1 = Intersect1(nums1, nums2);
+            PrintOut(intersect1);
+            int[] intersect2 = Intersect2(nums1, nums2);
+            PrintOut(intersect2);
+        }
+
+        private static void PrintOut(int[] intersect1)
+        {
             Console.Write("Intersection : [");
-            for(int i = 0; i < intersect1.Length; i++)
+            for (int i = 0; i < intersect1.Length; i++)
             {
                 if (i > 0)
                     Console.Write(", ");
@@ -26,6 +33,29 @@ namespace Assignment1
             Console.ReadLine();
         }
 
+        private static int[] Intersect1(int[] nums1, int[] nums2)
+        {
+            Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
+            Dictionary<int, int> nums2Dictionary = InsertIntoDictionary(nums2);
+            Dictionary<int, int> intersection = new Dictionary<int, int>();
+            int[] keys1 = nums1Dictionary.Keys.ToArray<int>();
+            int arraySize = 0;
+            int[] retValue = new int[Math.Min(nums1.Length, nums2.Length)];
+            for (int i = 0; i < keys1.Length; i++)
+            {
+                if (nums2Dictionary.ContainsKey(keys1[i]))
+                {
+                    // we have it on both, but need to check which has the lowest count
+                    nums1Dictionary.TryGetValue(keys1[i], out int value1);
+                    nums2Dictionary.TryGetValue(keys1[i], out int value2);
+                    for (int j = 0; j < Math.Min(value1, value2); j++)
+                    {
+                        retValue[arraySize++] = keys1[i];
+                    }
+                }
+            }
+            return retValue;
+        }
         private static int[] Intersect2(int[] nums1, int[] nums2)
         {
             Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
