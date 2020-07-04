@@ -13,17 +13,18 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
-            int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 5, 2, 5 };
-            int[] intersect1 = Intersect1(nums1, nums2);
-            PrintOut(intersect1);
-            int[] intersect2 = Intersect2(nums1, nums2);
-            PrintOut(intersect2);
+            int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 1, 2, 5 };
+            int size;
+            int[] intersect1 = Intersect1(nums1, nums2, out size);
+            PrintOut(intersect1, size);
+            int[] intersect2 = Intersect2(nums1, nums2, out size);
+            PrintOut(intersect2, size);
         }
 
-        private static void PrintOut(int[] intersect1)
+        private static void PrintOut(int[] intersect1, in int size)
         {
             Console.Write("Intersection : [");
-            for (int i = 0; i < intersect1.Length; i++)
+            for (int i = 0; i < size; i++)
             {
                 if (i > 0)
                     Console.Write(", ");
@@ -33,13 +34,13 @@ namespace Assignment1
             Console.ReadLine();
         }
 
-        private static int[] Intersect1(int[] nums1, int[] nums2)
+        private static int[] Intersect1(int[] nums1, int[] nums2, out int arraySize)
         {
             Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
             Dictionary<int, int> nums2Dictionary = InsertIntoDictionary(nums2);
             Dictionary<int, int> intersection = new Dictionary<int, int>();
             int[] keys1 = nums1Dictionary.Keys.ToArray<int>();
-            int arraySize = 0;
+            arraySize = 0;
             int[] retValue = new int[Math.Min(nums1.Length, nums2.Length)];
             for (int i = 0; i < keys1.Length; i++)
             {
@@ -56,13 +57,13 @@ namespace Assignment1
             }
             return retValue;
         }
-        private static int[] Intersect2(int[] nums1, int[] nums2)
+        private static int[] Intersect2(int[] nums1, int[] nums2, out int arraySize)
         {
             Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
             Dictionary<int, int> intersect = Intersection(nums1Dictionary, nums2);
             int[] keys = intersect.Keys.ToArray<int>();
             int[] retValue = new int[Math.Min(nums1.Length, nums2.Length)];
-            int arraySize = 0;
+            arraySize = 0;
             for (int i = 0; i < keys.Length; i++)
             {
                 intersect.TryGetValue(keys[i], out int value);
