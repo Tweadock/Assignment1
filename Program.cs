@@ -10,7 +10,7 @@ namespace Assignment1
     class Program
     {
         static void Main(string[] args)
-        {   //problem #3 
+        {   //problem # 6
             //creating the array, length argument, and function.
             char[] arr = { 'a', 'b', 'c', 'a', 'b', 'c' };
             int k = 3;
