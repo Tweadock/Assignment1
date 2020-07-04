@@ -37,7 +37,6 @@ namespace Assignment1
         {
             Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
             Dictionary<int, int> nums2Dictionary = InsertIntoDictionary(nums2);
-            Dictionary<int, int> intersection = new Dictionary<int, int>();
             int[] keys1 = nums1Dictionary.Keys.ToArray<int>();
             int arraySize = 0;
             int[] retValue = new int[Math.Min(nums1.Length, nums2.Length)];
