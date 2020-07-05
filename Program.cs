@@ -20,38 +20,44 @@ namespace Assignment1
             Console.WriteLine("Problem 1 Response: [" + getArrayResult[0] + ", " + getArrayResult[1] + "]");
 
             // Exercise 2
-            Console.WriteLine("Enter a string: ");
+            Console.WriteLine("Enter a string for Problem 2: ");
             string entry = Console.ReadLine();
 
             string strrev = StringReverse(entry);
-            Console.WriteLine(strrev);
-            Console.ReadLine();
+            Console.WriteLine("Problem 2 Response: " + strrev);
 
             // Exercise 3
+            Console.WriteLine("Problem 3 Input: [ 2, 2, 3, 5, 6 ]");
             int[] arr2 = { 2, 2, 3, 5, 6 };
             int n = arr2.Length;
-            Console.WriteLine(minSum(arr2, n));
+            Console.WriteLine("Problem 3 Output: " + minSum(arr2, n));
 
             // Exercise 4
             //creating the array, length argument, and function.
 
             string myStr = "Aaaababc";
+            Console.WriteLine("Problem 4 input: " + myStr);
             string returnValue = FreqSort(myStr);
-            Console.WriteLine(returnValue);
+            Console.WriteLine("Problem 4 output: " + returnValue);
 
             // Exercise 5
             int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 1, 2, 5 };
+
+            Console.WriteLine("Problem 5 input: nums1 = [2, 5, 5, 2] , nums2 = [1, 2, 5 ]");
             int size;
             int[] intersect1 = Intersect1(nums1, nums2, out size);
+            Console.WriteLine("Problem 5 output from first solution:");
             PrintOut(intersect1, size);
             int[] intersect2 = Intersect2(nums1, nums2, out size);
+            Console.WriteLine("Problem 5 output from second solution:");
             PrintOut(intersect2, size);
 
             // Exercise 6 
             //creating the array, length argument, and function.
+            Console.WriteLine("Problem 6 Input: arr = [a,b,c,a,b,c], k=3");
             char[] arr6 = { 'a', 'b', 'c', 'a', 'b', 'c' };
             int k = 3;
-            Console.WriteLine("Array contains duplicate with k = " + k + ": " + ContainsDuplicate(arr6, k));
+            Console.WriteLine("Problem 6 output: " +  ContainsDuplicate(arr6, k));
             Console.ReadLine();
         }
 
