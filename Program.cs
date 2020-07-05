@@ -12,11 +12,17 @@ namespace Assignment1
     {
         static void Main(string[] args)
 
-     
+
         {   //problem #4 
             //creating the array, length argument, and function.
 
             string myStr = "Aaaababc";
+            string returnValue = FreqSort(myStr);
+            Console.WriteLine(returnValue);
+        }
+
+        private static string FreqSort(string myStr)
+        {
             int len = myStr.Length;
             int maxCount = 0;
 
@@ -33,9 +39,9 @@ namespace Assignment1
                     newCount++;
                     lettersDictionary.TryAdd(myStr[i], newCount);
                     // keep track of the overall max number of occurrences
-                    if(newCount>maxCount)
+                    if (newCount > maxCount)
                         maxCount = newCount;
-                } 
+                }
                 else // never saw this letter; add it to dictionary with count = 1
                 {
                     lettersDictionary.Add(myStr[i], 1);
@@ -52,14 +58,14 @@ namespace Assignment1
                     lettersDictionary.TryGetValue(keysArray[index], out int value);
                     if (value == count)
                     {
-                        for (int occurrences = 0; occurrences < count; occurrences ++)
+                        for (int occurrences = 0; occurrences < count; occurrences++)
                             returnValue += keysArray[index];
-                    }                
+                    }
                 }
             }
-            Console.WriteLine(returnValue);
-        }
 
+            return returnValue;
+        }
     }
 }
     
