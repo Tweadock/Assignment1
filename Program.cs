@@ -46,6 +46,13 @@ namespace Assignment1
             PrintOut(intersect1, size);
             int[] intersect2 = Intersect2(nums1, nums2, out size);
             PrintOut(intersect2, size);
+
+            // Exercise 6 
+            //creating the array, length argument, and function.
+            char[] arr6 = { 'a', 'b', 'c', 'a', 'b', 'c' };
+            int k = 3;
+            Console.WriteLine("Array contains duplicate with k = " + k + ": " + ContainsDuplicate(arr6, k));
+            Console.ReadLine();
         }
 
         static int[] targetRange(int[] marks, int target)
@@ -276,5 +283,22 @@ namespace Assignment1
             }
             return retValue;
         }
+        static bool ContainsDuplicate(char[] arr, int n)
+        {
+            bool returnValue = false;
+            int i = 0;
+            while ((!returnValue) && (i < arr.Length))
+            {
+                int j = i + 1;
+                while ((!returnValue) && (j <= i + n) && (j < arr.Length))
+                {
+                    returnValue = (arr[i] == arr[j]);
+                    j++;
+                }
+                i++;
+            }
+            return returnValue;
+        }
     }
 }
+
