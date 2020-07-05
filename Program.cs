@@ -10,10 +10,18 @@ namespace Assignment1
     class Program
     {
         static void Main(string[] args)
-            //updated solution to #2, using a nested if inside of a foreach loop to catch any punctuation
         {
+            // Exercise 2
             Console.WriteLine("Enter a string: ");
             string entry = Console.ReadLine();
+
+            string strrev = StringReverse(entry);
+            Console.WriteLine(strrev);
+            Console.ReadLine();
+        }
+        //updated solution to #2, using a nested if inside of a foreach loop to catch any punctuation
+        private static string StringReverse(string entry)
+        {
             string strrev = "";
             string ph = "";
             //setting up an array of common punctuation to look for
@@ -35,41 +43,9 @@ namespace Assignment1
                 }
             }
             strrev = strrev + ph + " ";
-            Console.WriteLine(strrev);
-            Console.ReadLine();
-
-
+            return strrev;
         }
-
-
     }
-
-    //static void Main(string[] args)
-
-    ////question 2
-    //{
-
-    //    string myStr = "Rocky was here";
-    //    Console.WriteLine("my input is: " + myStr);
-    //    string rev = StringReverse(myStr);
-
-    //    Console.WriteLine("reversed string is: " + rev);
-    //    Console.ReadLine();
-    //}
-
-    //private static string StringReverse(string s)
-    //{
-    //    string returnValue = "";
-    //    //set length equal to 1 minus the string length to avoid errors
-    //    int len = s.Length - 1;
-    //    //take the string starting with the highest number and place them until the end, moving down one number at a time.
-    //    while (len >= 0)
-    //    {
-    //        returnValue = returnValue + s[len];
-    //        len--;
-    //    }
-
-    //    return returnValue;
 }
    
 
