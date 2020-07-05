@@ -13,6 +13,7 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
+
             ////set up the initial array and the target number
             int[] arr = { 1, 2, 3, 4, 5, 6, 6, 6, 7, 9 };
             int x = 6;
@@ -40,6 +41,8 @@ namespace Assignment1
             Console.WriteLine(returnValue);
 
             // Exercise 5
+
+           //setting up arrays and calling functions Intersect 1 and 2
             int[] nums1 = { 2, 5, 5, 2 }, nums2 = { 1, 2, 5 };
             int size;
             int[] intersect1 = Intersect1(nums1, nums2, out size);
@@ -176,7 +179,7 @@ namespace Assignment1
         private static void PrintOut(int[] intersect1, in int size)
         {
             Console.Write("Intersection : [");
-            for (int i = 0; i < size; i++)
+                     for (int i = 0; i < size; i++)
             {
                 if (i > 0)
                     Console.Write(", ");
@@ -188,6 +191,7 @@ namespace Assignment1
 
         private static int[] Intersect1(int[] nums1, int[] nums2, out int arraySize)
         {
+            //set up a dictionary to compare to columns of numbers
             Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
             Dictionary<int, int> nums2Dictionary = InsertIntoDictionary(nums2);
             int[] keys1 = nums1Dictionary.Keys.ToArray<int>();
@@ -210,6 +214,7 @@ namespace Assignment1
         }
         private static int[] Intersect2(int[] nums1, int[] nums2, out int arraySize)
         {
+            //creates an intersection array that compares values and tracks till end of array 
             Dictionary<int, int> nums1Dictionary = InsertIntoDictionary(nums1);
             Dictionary<int, int> intersect = Intersection(nums1Dictionary, nums2);
             int[] keys = intersect.Keys.ToArray<int>();
