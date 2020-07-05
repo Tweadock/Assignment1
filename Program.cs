@@ -16,7 +16,7 @@ namespace Assignment1
             int[] arr = { 1, 2, 3, 4, 5, 6, 6, 6, 7, 9 };
             int x = 6;
             int[] getArrayResult = targetRange(arr, x);
-            Console.WriteLine("Problem 1 Response: [" + getArrayResult[0] + ",  " + getArrayResult[1]);
+            Console.WriteLine("Problem 1 Response: [" + getArrayResult[0] + ", " + getArrayResult[1]+"]");
         }
 
         static int[] targetRange(int[] marks, int target)
