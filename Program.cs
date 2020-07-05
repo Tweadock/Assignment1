@@ -14,6 +14,7 @@ namespace Assignment1
         static void Main(string[] args)
         {
             ////set up the initial array and the target number
+            Console.WriteLine("Problem 1 Input: marks = [ 1, 2, 3, 4, 5, 6, 6, 6, 7, 9 ], target = 6");
             int[] arr = { 1, 2, 3, 4, 5, 6, 6, 6, 7, 9 };
             int x = 6;
             int[] getArrayResult = targetRange(arr, x);
@@ -196,7 +197,6 @@ namespace Assignment1
                 Console.Write(intersect1[i]);
             }
             Console.WriteLine("]");
-            Console.ReadLine();
         }
 
         private static int[] Intersect1(int[] nums1, int[] nums2, out int arraySize)
